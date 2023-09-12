@@ -1,0 +1,106 @@
+{
+    "data": [
+        {
+            "itemImageSrc": "demo/images/galleria2/picture01.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture01s.jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture02.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture02s.jpg",
+            "alt": "Description for Image 2",
+            "title": "Title 2"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture03.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture03s.jpg",
+            "alt": "Description for Image 3",
+            "title": "Title 3"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture04.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture04s.jpg",
+            "alt": "Description for Image 4",
+            "title": "Title 4"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture05.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture05s.jpg",
+            "alt": "Description for Image 5",
+            "title": "Title 5"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture06.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture06s.jpg",
+            "alt": "Description for Image 6",
+            "title": "Title 6"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture07.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture07s.jpg",
+            "alt": "Description for Image 7",
+            "title": "Title 7"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture08.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture08s.jpg",
+            "alt": "Description for Image 8",
+            "title": "Title 8"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture09.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture09s.jpg",
+            "alt": "Description for Image 9",
+            "title": "Title 9"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture10.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture10s.jpg",
+            "alt": "Description for Image 10",
+            "title": "Title 10"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture11.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture11s.jpg",
+            "alt": "Description for Image 11",
+            "title": "Title 11"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture12.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture12s.jpg",
+            "alt": "Description for Image 12",
+            "title": "Title 12"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture13.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture13s.jpg",
+            "alt": "Description for Image 13",
+            "title": "Title 13"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture14.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture14s.jpg",
+            "alt": "Description for Image 14",
+            "title": "Title 14"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture15.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture15s.jpg",
+            "alt": "Description for Image 15",
+            "title": "Title 15"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture16.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture16s.jpg",
+            "alt": "Description for Image 16",
+            "title": "Title 16"
+        },
+        {
+            "itemImageSrc": "demo/images/galleria2/picture17.jpg",
+            "thumbnailImageSrc": "demo/images/galleria2/picture17s.jpg",
+            "alt": "Description for Image 17",
+            "title": "Title 17"
+        }
+    ]
+}
