@@ -1,0 +1,81 @@
+{
+    "project": {
+      "Title": "Open Museum for an Open Society",
+      "subTitle": "Welcome to the start page of the Open Museum Project at the University of Bonn",
+      "cardHeader": "new Directus CMS system",
+      "cardSubtitle": "",
+      "cardCaption": "Universitary collections and museums affiliated with Open Museum are currently being updated with the cutting-edge and open-source Content Management System Directus. To learn more about Directus, please visit:",
+      "projectHeader": "Open Museum for an Open Society",
+      "projectSubheader": "Welcome to the start page of the Open Museum Project at the University of Bonn",
+      "ProjectDirection-Key": "Project Direction:",
+      "ProjectDirection-Value": "Prof. Dr. Karoline Noack; Prof. Dr. Birgit Ulrike Münch",
+      "ProjectStaff-Key": "Scientific Staff:",
+      "ProjectStaff-Value": "Alma Hannig (Collection Coordination), Carlos Pallan Gayol (IT); Edouard Grigowski (IT); Elizabeth Stauß (Project Coordination, until July 2023)",
+      "ProjectLinks-Key": "Relevant Project links:",
+      "ProjectLinks-Value1": "Research Profile TRA Present Pasts",
+      "ProjectLinks-Value2": "Research Profile — University of Bonn (uni-bonn.de)",
+      "projectDescription": "The TRA Present Pasts funded project 'Open Museum for Open Science' - a digital platform for the museums and collections of the University of Bonn as Heritage – is being developed within the Excellence Strategy of the University. The project aims to make the university's collections digitally accessible for research and teaching, thereby creating more transparency. With the platform as infrastructure, knowledge about the collections becomes accessible, and participation from diverse stakeholder groups in knowledge production is facilitated. For this purpose, the data of the Bonn university collections are stored in a system that allows for a contemporary presentation and communication in line with industry standards and improved content analysis. The project also lays the foundation for a sustainable and robust future concept for the digitization of museums and collections in general and their valuation as infrastructures for research and teaching.",
+      "furtherInformation": "further information about the Project",
+      "header1": "Open Museum",
+      "content1": "The Open Museum project implements a digital platform for the museums and collections of the University of Bonn. The goal is to make the collections accessible for research and teaching as well as a broad public. The interests of the users should be at the center and be the starting point for the platform's development. It should be a digital space for exhibitions and offerings on current questions and topics, inviting people in Bonn and worldwide to engage with the collections.",
+      "header2": "Goals",
+      "content2": "Accessibility and transparency are crucial foundations for working and researching with the objects of the collections. They also enable participation from interested groups and individuals who have previously had no access to the objects, making them an important part of democratizing knowledge. This means as many people as possible in our society have access to knowledge and can participate in producing new knowledge. Participation and collaboration in research with the objects and collections also introduce new forms of knowledge into collection work. The Open Museum aims to connect collections, science, and people worldwide, encouraging new research. Digitization allows collections, museums, and disciplines to connect. This way, we can better understand from today's perspective how individual collections came into being, where they come from, and why they have arrived here. Each discipline asks its own questions about objects and collections. Through networking, interdisciplinary research arises, allowing for new questions. It also creates new collaborations for cooperation with museums and interested groups worldwide.",
+      "header3": "Actors",
+      "content3": "Potential users and target groups of the Open Museum include researchers, students, and lecturers from the University of Bonn, as well as staff from the University of Bonn and other universities, museums, educational and cultural institutions. The Open Museum aims to reach a broad public, from citizens of Bonn and students to copyright societies worldwide.",
+      "header4": "Next Steps",
+      "content4": "Setting up new digital platforms and database systems, initially for the collections of the Bonn Altamerikasammlungen and the Egyptian Museum."
+    },
+    "greeting": "Hello and welcome!",
+    "user": {
+      "login": "Login"
+    },
+    "menu": {
+      "home": "Home",
+      "basaCollection": "BASA Collection",
+      "directusCMS": "Directus CMS",
+      "learningMaterials": "Learning Materials",
+      "feedback": "Feedback",
+      "selectLanguage": "Select Language",
+      "einloggen": "Login",
+      "ausloggen": "Logout",
+      "email": "User email:",
+      "password": "Password:"
+    },
+    "language": {
+      "german": "German",
+      "english": "English",
+      "spanish": "Spanish",
+      "french": "French"
+    },
+    "logo": {
+      "hover": "visit the page of Open Museum at BCDH"
+    },
+    "login": {
+      "error": "there was an error processing this request"
+    },
+    "recordHeaders": {
+      "view_details": "View Details",
+      "record_id": "Record ID",
+      "name": "Object Name",
+      "description": "Description",
+      "obj_designation": "Object Designation",
+      "images": "Images",
+      "informe_designation": "Informe Designation",
+      "label": "Obj. Label",
+      "location": "Location of find",
+      "lote_numer": "Location of find",
+      "date_documented": "Date documented",
+      "category_num": "Category number",
+      "category_name": "Category name",
+      "author": "Captured by",
+      "record_created": "Record created",
+      "learningMaterials": "Learning Materials",
+      "feedback": "Feedback",
+      "selectLanguage": "Select Language",
+      "einloggen": "Login",
+      "ausloggen": "Logout",
+      "email": "User email:",
+      "password": "Password:"
+    }
+  }
+  

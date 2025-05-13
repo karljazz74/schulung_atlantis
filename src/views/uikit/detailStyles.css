@@ -1,0 +1,90 @@
+/* All your CSS styles */
+:deep(.p-datatable-frozen-tbody) {
+    font-weight: bold;
+}
+
+:deep(.p-datatable-scrollable .p-frozen-column) {
+    font-weight: bold;
+}
+
+:deep(.galleria-card) {
+    margin-bottom: 4rem;
+}
+
+:deep(#pv_id_2 > div > div.p-galleria-item-wrapper > ul) {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.text-600 {
+    color: #1caad9cc !important;
+}
+
+text-light {
+    color: #ead770;
+    /* Adjust color codes as needed */
+}
+
+.text-dark {
+    color: #dfe1df;
+    /* Adjust color codes as needed */
+}
+
+.custom-transparency {
+    color: rgba(var(--text-primary-color), 0.5);
+    /* 0.5 is the alpha value for 50% transparency */
+}
+
+.link-color {
+    color: #FF5733 !important;
+    /* Color for light theme */
+    text-decoration: underline !important;
+    /* Remove underline if desired */
+}
+
+.text-xxl {
+    font-size: 1.75rem !important;
+}
+
+
+.mb-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: -2rem;
+}
+
+#pv_id_1>div>div.p-galleria-item-wrapper>ul {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0.2rem;
+}
+
+.p-carousel .p-carousel-indicators {
+    padding: 0rem;
+    margin-top: -2rem;
+    /* Adjust this value to position the indicators closer or farther */
+    height: 2rem;
+}
+
+#pv_id_2>div>div.p-galleria-item-wrapper>ul>li.p-galleria-indicator.p-highlight>button {
+    height: 2rem;
+}
+
+.p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+    background-color: #fc6161;
+    height: 2rem;
+}
+
+.p-component .w-6 {
+    width: 100% !important;
+    max-height: 18vh;
+    object-fit: contain;
+}
+
+/* ... other styles ... */

@@ -1,0 +1,79 @@
+{
+    "project": {
+      "Title": "Open Museum for an Open Society",
+      "subTitle": "Bienvenue sur la page d'accueil du projet Open Museum de l'Université de Bonn",
+      "cardHeader": "nouveau système CMS Directus",
+      "cardSubtitle": "",
+      "cardCaption": "Les collections et musées universitaires connectés à Open Museum sont actuellement mis à jour avec le tout dernier système de gestion de contenu Open Source Directus 10. Pour en savoir plus sur Directus, veuillez visiter :",
+      "projectHeader": "Open Museum for an Open Society",
+      "projectSubheader": "Bienvenue sur la page d'accueil du projet Open Museum de l'Université de Bonn",
+      "ProjectDirection-Key": "Direction du projet:",
+      "ProjectDirection-Value": "Prof. Dr. Karoline Noack; Prof. Dr. Birgit Ulrike Münch",
+      "ProjectStaff-Key": "Collaborateurs scientifiques:",
+      "ProjectStaff-Value": "Alma Hannig (Coordination des collections), Carlos Pallan Gayol (IT); Edouard Grigowski (IT); Elizabeth Stauß (Coordination du projet, jusqu'à juillet 2023)",
+      "ProjectLinks-Key": "Liens pertinents au projet:",
+      "ProjectLinks-Value1": "Profil de recherche TRA Present Pasts",
+      "ProjectLinks-Value2": "Profil de recherche — Université de Bonn (uni-bonn.de)",
+      "projectDescription": "Le projet soutenu par TRA Present Pasts, « Open Museum for Open Science » – une plateforme numérique pour les musées et collections de l'Université de Bonn en tant que patrimoine – est développé dans le cadre de la stratégie d'excellence de l'université. L'objectif est de rendre les collections numériquement accessibles pour la recherche et l'enseignement, créant ainsi une plus grande transparence. Avec cette plateforme en tant qu'infrastructure, il devient possible d'accéder aux connaissances sur les collections et de permettre la participation de divers groupes de parties prenantes à la production de connaissances.",
+      "furtherInformation": "plus d'informations sur le projet",
+      "header1": "Open Museum",
+      "content1": "Le projet Open Museum réalise une plateforme numérique pour les musées et collections de l'Université de Bonn. L'objectif est de rendre les collections accessibles à la recherche, à l'enseignement et au grand public. L'idée est de centrer cette plateforme autour des intérêts diversifiés de ses utilisateurs, en créant un espace numérique pour des expositions et des offres sur des sujets actuels, invitant ainsi les gens de Bonn et du monde entier à s'engager avec les collections.",
+      "header2": "Objectifs",
+      "content2": "L'accessibilité et la transparence sont essentielles pour permettre le travail et la recherche avec les objets des collections. Elles permettent également la participation de groupes et d'individus intéressés qui n'avaient pas auparavant accès aux objets, jouant ainsi un rôle clé dans la démocratisation de la connaissance. L'Open Museum souhaite connecter collections, science et personnes à travers le monde, stimulant de nouvelles recherches.",
+      "header3": "Acteurs",
+      "content3": "Parmi les utilisateurs potentiels et les groupes cibles de l'Open Museum, outre les chercheurs, étudiants et enseignants de l'Université de Bonn, on compte le personnel de l'Université de Bonn ainsi que d'autres universités, musées et institutions culturelles et éducatives. L'Open Museum vise à toucher un large public, allant des citoyens de Bonn aux écoliers, jusqu'aux sociétés d'auteurs du monde entier.",
+      "header4": "Prochaines étapes",
+      "content4": "Mise en place de nouvelles plateformes numériques et systèmes de bases de données, d'abord pour les collections d'Altamerikasammlungen de Bonn et du Musée égyptien."
+    },
+    "greeting": "Salut et bienvenue!",
+    "user": {
+      "login": "Se connecter"
+    },
+    "menu": {
+      "home": "Page d'accueil",
+      "basaCollection": "Collection BASA",
+      "directusCMS": "Directus CMS",
+      "learningMaterials": "Matériel didactique",
+      "feedback": "Feedback",
+      "selectLanguage": "Choisir une langue",
+      "einloggen": "Se connecter",
+      "ausloggen": "Déconnexion",
+      "email": "Email de l'utilisateur:",
+      "password": "Mot de passe:"
+      },
+    "language": {
+      "german": "Alemán",
+      "english": "Inglés",
+      "spanish": "Español",
+      "french": "Francés"
+    },
+    "logo": {
+      "hover": "Visitez le site du Open Museum au BCDH"
+    },
+    "recordHeaders": {
+      "view_details": "Ver detalles",
+      "record_id": "ID Registro",
+      "name": "Nombre del objeto",
+      "description": "Descripción",
+      "obj_designation": "Designación objeto",
+      "images": "imágenes",
+      "informe_designation": "Designación informe",
+      "label": "Etiqueta del Obj.",
+      "location": "Ubicación del hallazgo",
+      "lote_numer": "Ubicación del hallazgo",
+      "date_documented": "Fecha documentada",
+      "category_num": "Número de categoría",
+      "category_name": "Nombre de la categoría",
+      "author": "Autor",
+      "record_created": "Registro creado en",
+      "learningMaterials": "Learning Materials",
+      "feedback": "Feedback",
+      "selectLanguage": "Select Language",
+      "einloggen": "Login",
+      "ausloggen": "Logout",
+      "email": "User email:",
+      "password": "Password:"
+    }
+  }
+  
+  

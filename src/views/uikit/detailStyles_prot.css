@@ -1,0 +1,52 @@
+/* All your CSS styles */
+:deep(.p-datatable-frozen-tbody) {
+    font-weight: bold;
+}
+
+:deep(.p-datatable-scrollable .p-frozen-column) {
+    font-weight: bold;
+}
+
+:deep(#pv_id_1 > div > div.p-galleria-item-wrapper > ul) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.mb-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: -2rem;
+}
+
+.card.flex.justify-content-center.custom-padding {
+    display: flex;
+}
+
+
+.p-galleria-item-wrapper {
+    display: flex-start;
+    flex-direction: column;
+    position: relative;
+}
+
+.carousel-items-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0.2rem;
+}
+.p-carousel .p-carousel-indicators {
+    padding: 0rem;
+    margin-top: -2rem; /* Adjust this value to position the indicators closer or farther */
+}
+.p-component .w-6 {
+    width: 100% !important;
+    max-height: 18vh;
+    object-fit: contain;
+}
+/* ... other styles ... */

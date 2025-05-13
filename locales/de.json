@@ -1,0 +1,106 @@
+{
+    "project": {
+      "Title": "Open Museum for an Open Society",
+        "subTitle": "Willkommen auf der Startseite des Open Museum Project an der Universität Bonn",
+      "cardHeader": "neues Directus CMS-System",
+      "cardSubtitle": "",
+      "cardCaption": "Universitäre Sammlungen und Museen, die an Open Museum angebunden sind, werden derzeit mit dem hochmodernen Open Source Content Management System Directus 10 aktualisiert. Um mehr über Directus zu erfahren, besuchen Sie bitte: ",
+      "projectHeader": "Open Museum for an Open Society",
+      "projectSubheader": "Willkommen auf der Startseite des Open Museum Project an der Universität Bonn",
+      "ProjectDirection-Key": "Projektleitung:",
+      "ProjectDirection-Value": "Prof. Dr. Karoline Noack; Prof. Dr. Birgit Ulrike Münch",
+      "ProjectStaff-Key": "wissenschaftliche Mitarbeiter*innen:",
+      "ProjectStaff-Value": "Alma Hannig (Sammlungskoordination), Carlos Pallan Gayol (IT); Edouard Grigowski (IT); Elizabeth Stauß (Projektkoordination, bis Juli 2023)",
+      "ProjectLinks-Key": "Projektrelevante Links:",
+      "ProjectLinks-Value1": "Forschungsprofil TRA Present Pasts",
+      "ProjectLinks-Value2": " Forschungsprofil — Universität Bonn (uni-bonn.de)",
+      "projectDescription": "Das TRA Present Pasts geförderte Projekt „Open Museum for Open Science“ – digitale Plattform der Museen und Sammlungen der Universität Bonn als Heritage – wird im Rahmen der Exzellenz-Strategie der Universität erarbeitet. Ziel des Projektes ist es, die Sammlungen der Universität digital für die Forschung und Lehre zugänglich zu machen und somit mehr Transparenz zu schaffen. Mit der Plattform als Infrastruktur, wird einerseits Wissen über die Sammlungen zugänglich und andererseits die Beteiligung von vielfältigen Stakeholdergruppen an der Wissensproduktion ermöglicht. Hierfür werden die Daten der Bonner Universitätssammlungen in einem System hinterlegt, welches zum einen den Industriestandards entsprechend eine zeitgemäße Präsentation und Kommunikation und zum anderen eine verbesserte Analyse der Inhalte erlaubt. In dem Projekt werden darüber hinaus die Grundlagen für ein nachhaltiges und tragfähiges Zukunftskonzept für die Digitalisierung der Museen und Sammlungen insgesamt und ihrer Inwertsetzung als Infrastrukturen von Forschung und Lehre gelegt.",
+      "furtherInformation": "weitere Informationen zum Projekt",
+      "header1": "Open Museum",
+      "content1": "Das Open Museum-Projekt realisiert eine digitale Plattform für die Museen und Sammlungen der Universität Bonn. Ziel ist es, die Sammlungen für die Forschung und Lehre sowie eine breite Öffentlichkeit zugänglich zu machen. Hierbei sollen die verschiedenen Interessen der Nutzer*innen im Mittelpunkt stehen und Ausgangspunkt für den Aufbau der Plattform sein. Diese soll ein digitaler Raum für Ausstellungen und Angebote zu aktuellen Fragen und Themen sein, der Menschen hier in Bonn aber auch weltweit einlädt, sich mit den Sammlungen zu beschäftigen.",
+      "header2": "Ziele",
+      "content2": "Zugänglichkeit und Transparenz sind eine wichtige Grundlage, um die Arbeit und Forschung mit den Objekten der Sammlungen zu ermöglichen. Sie ermöglichen auch die Beteiligung von interessierten Gruppen und Personen, die bisher keinen Zugang zu den Objekten haben und sind deshalb ein wichtiger Bestandteil der Demokratisierung von Wissen. Das heißt konkret möglichst viele Menschen unserer Gesellschaft haben Zugang zu Wissen und können sich an der Produktion von neuem Wissen beteiligen. Partizipation und Mitwirkung an der Forschung mit den Objekten und Sammlungen bringt auch neue Wissensformen in die Sammlungsarbeit mit ein. Das Open Museum möchte Sammlungen, Wissenschaft und Menschen weltweit miteinander vernetzen und zu neuen Forschungen anregen. Digitalisierung ermöglicht Sammlungen, Museen und Disziplinen sich miteinander zu vernetzen. So können wir aus heutiger Sicht besser verstehen, wie einzelne Sammlungen entstanden sind, woher sie kommen und warum sie hierher gelangt sind. Jedes Fach stellt eigene Fragen an die Objekte und Sammlungen. Durch Vernetzung entsteht inter- und transdisziplinäre Forschung, die neue Fragestellungen zu lässt. Außerdem entstehen auch neue Kooperationen für die Zusammenarbeit mit Museen und interessierten Gruppen weltweit.",
+      "header3": "Akteur*innen",
+      "content3": "Zu den möglichen Nutzer*innen und Zielgruppen des Open Museums zählen neben den Forschenden, Studierenden und Lehrenden der Universität Bonn, die Mitarbeiter*innen der Universität Bonn, aber auch anderer Universitäten, Museen, Bildungs- und Kultureinrichtungen. Das Open Museum möchte eine breite Öffentlichkeit ansprechen, angefangen bei den Bonner Bürger*innen, über Schüler*innen bis hin zu Urhebergesellschaften weltweit.",
+      "header4": "Nächste Schritte",
+      "content4": "Einrichtung neuer digitaler Plattformen und Datenbanksysteme zunächst für die Sammlungen der Bonner Altamerikasammlungen und des Ägyptischen Museums."
+    },     
+    "greeting": "Hello and welcome!",
+    "user": {
+      "einloggen": "Einloggen"
+    },
+    "menu": {
+      "home": "Startseite",
+      "basaCollection": "BASA-Sammlung",
+      "directusCMS": "Directus CMS",
+      "learningMaterials": "Lernmaterialien",
+      "feedback": "Feedback",
+      "selectLanguage": "Sprachauswahl",
+      "einloggen": "Einloggen",
+      "ausloggen": "Ausloggen",
+      "email": "Benutzer-Email:",
+      "password": "Passwort:",
+      "greeting": "Willkommen "
+    },
+    "language": {
+      "german": "Deutsch",
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch"
+    },
+    "logo": {
+      "hover": "die Seite des Open Museums auf BCDH besuchen"
+    },
+    "LoginFunc": {
+      "error": "bei der Bearbeitung dieser Anfrage ist ein Fehler aufgetreten"
+    },
+    "learn": {
+      "Title": "Lernmaterialien für Open Museum",
+        "subTitle": "Bildungsmaterialien für die Forschung",
+      "cardHeader": "Einführung in das Directus CMS",
+      "cardSubtitle": "",
+      "cardCaption": "Lernen Sie die Grundlagen und ersten Schritte zu einer erfolgreichen Benutzererfahrung mit dem neuen DIrectus Content Management Systemystem Directus 10 aktualisiert. Um mehr über Directus zu erfahren, besuchen Sie bitte: ",
+      "projectHeader": "Lernmaterialien für Open Museum",
+      "projectSubheader": "Bildungsmaterialien für die Forschung",
+      "datum": "02.09.2023"
+  },
+  "card1": {
+    "subTitle1": "Bildungsmaterialien für die Forschung2",
+    "cardHeader1": "Einführung in das Directus CMS",
+    "cardSubtitle1": "",
+    "cardCaption1": "Lernen Sie die Grundlagen und ersten Schritte zu einer erfolgreichen Benutzererfahrung mit dem neuen DIrectus Content Management Systemystem Directus 10 aktualisiert. Um mehr über Directus zu erfahren, besuchen Sie bitte: ",
+    "datum1": "02.09.2023"
+  },
+  "card2": {
+    "subTitle2": "Bildungsmaterialien für die Forschung2",
+    "cardHeader2": "Einführung in das Directus CMS",
+    "cardSubtitle2": "",
+    "cardCaption2": "Lernen Sie die Grundlagen und ersten Schritte zu einer erfolgreichen Benutzererfahrung mit dem neuen DIrectus Content Management Systemystem Directus 10 aktualisiert. Um mehr über Directus zu erfahren, besuchen Sie bitte: ",
+    "datum2": "02.09.2023"
+  },
+  "recordHeaders": {
+    "view_details": "Details ansehen",
+    "record_id": "Datensatzkennung",
+    "name": "Objektname",
+    "description": "Beschreibung",
+    "obj_designation": "Objektbezeichnung",
+    "images": "Bilder",
+    "informe_designation": "Arbeitsberichtsbezeichnung",
+    "label": "Obj. Etikett",
+    "location": "Fundort",
+    "lote_numer": "Fundort",
+    "date_documented": "Dokumentationsdatum",
+    "category_num": "Kategorienummer",
+    "category_name": "Kategoriename",
+    "author": "Erfasst von",
+    "record_created": "Datensatz erstellt am",
+    "learningMaterials": "Learning Materials",
+    "feedback": "Feedback",
+    "selectLanguage": "Select Language",
+    "einloggen": "Login",
+    "ausloggen": "Logout",
+    "email": "User email:",
+    "password": "Password:"
+  }
+  }
+  

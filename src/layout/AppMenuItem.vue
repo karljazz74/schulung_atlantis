@@ -43,6 +43,14 @@ onBeforeMount(() => {
     isActiveMenu.value = activeItem === itemKey.value || activeItem ? activeItem.startsWith(itemKey.value + '-') : false;
 });
 
+const handleClick = () => {
+    if (item.click) {
+        item.click();
+    } else if (item.to) {
+        // Existing navigation logic
+    }
+};
+
 watch(
     () => isActiveMenu.value,
     () => {
@@ -89,6 +97,12 @@ watch(
 const itemClick = async (event, item) => {
     if (item.disabled) {
         event.preventDefault();
+        return;
+    }
+
+// Check if the label is 'HOME' and redirect
+if (item.label === 'Startseite') {
+        window.location.href = 'https://openmuseum.uni-bonn.de';
         return;
     }
 

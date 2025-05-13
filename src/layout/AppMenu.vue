@@ -2,7 +2,108 @@
 import AppMenuItem from './AppMenuItem.vue';
 import { ref } from 'vue';
 const model = ref([
+{
+        label: 'HOME MENÜ',
+        icon: 'pi pi-fw pi-download',
+        items: [
+            {
+                label: 'Startseite',
+                icon: 'pi pi-fw pi-home',
+                click: () => window.location.href = 'https://openmuseum.uni-bonn.de'
+            },
+        ],
+    },
     { separator: true },
+    {
+        label: 'SAMMLUNGEN',
+        icon: 'pi pi-th-large',
+        items: [
+            {
+                label: 'BASA Sammlung',
+                icon: 'pi pi-fw pi-map',
+                items: [
+                    {
+                        label: 'Highlights',
+                        icon: 'pi pi-fw pi-image',
+                        to: '/basa_collection/highlights',
+                    },
+                    {
+                        label: 'Highlights Detail',
+                        icon: 'pi pi-fw pi-sitemap',
+                        to: '/basa_collection/detail',
+                    },
+                    {
+                        label: 'Objects Browse',
+                        icon: 'pi pi-fw pi-sitemap',
+                        to: '/basa_collection/detail',
+                    },
+                    {
+                        label: 'Directus CMS',
+                        icon: 'pi pi-fw pi-database',
+                        to: '/basa_collection/detail',
+                    },
+                    {
+                        label: 'PG Admin interface',
+                        icon: 'pi pi-fw pi-server',
+                        to: '/basa_collection/detail',
+                    },
+                ],
+            },
+            {
+                label: 'Ägyptisches Museum Sammlung',
+                icon: 'pi pi-fw pi-map',
+                items: [
+                    {
+                        label: 'Highlights',
+                        icon: 'pi pi-fw pi-image',
+                        to: '/apps/learn/list',
+                    },
+                    {
+                        label: 'Objects Browse',
+                        icon: 'pi pi-fw pi-sitemap',
+                        to: '/apps/learn/detail',
+                    },
+                    {
+                        label: 'Directus CMS',
+                        icon: 'pi pi-fw pi-database',
+                        to: '/apps/learn/edit',
+                    },
+                    {
+                        label: 'PG Admin interface',
+                        icon: 'pi pi-fw pi-server',
+                        to: '/apps/learn/edit',
+                    },
+                ],
+            },
+            {
+                label: 'AKM Sammlung',
+                icon: 'pi pi-fw pi-map',
+                items: [
+                    {
+                        label: 'Highlights',
+                        icon: 'pi pi-fw pi-image',
+                        to: '/apps/learn/list',
+                    },
+                    {
+                        label: 'Objects Browse',
+                        icon: 'pi pi-fw pi-sitemap',
+                        to: '/apps/learn/detail',
+                    },
+                    {
+                        label: 'Directus CMS',
+                        icon: 'pi pi-fw pi-database',
+                        to: '/apps/learn/edit',
+                    },
+                    {
+                        label: 'PG Admin interface',
+                        icon: 'pi pi-fw pi-server',
+                        to: '/apps/learn/edit',
+                    },
+                ],
+            }
+            
+        ],
+    },
     {
         label: 'Apps',
         icon: 'pi pi-th-large',
@@ -13,19 +114,24 @@ const model = ref([
                 items: [
                     {
                         label: 'List',
-                        icon: 'pi pi-fw pi-image',
+                        icon: 'pi pi-fw pi-list',
                         to: '/apps/learn/list',
                     },
                     {
                         label: 'Detail',
-                        icon: 'pi pi-fw pi-list',
+                        icon: 'pi pi-fw pi-image',
                         to: '/apps/learn/detail',
                     },
                     {
-                        label: 'Edit',
-                        icon: 'pi pi-fw pi-pencil',
-                        to: '/apps/learn/edit',
+                        label: 'Sammlunghighlight',
+                        icon: 'pi pi-fw pi-image',
+                        to: '/apps/learn/highlight',
                     },
+                    {
+                    label: 'AR Viewer',
+                    icon: 'pi pi-fw pi-image',
+                    to: '/ar-viewer',
+                },
                 ],
             },
             {
@@ -49,47 +155,7 @@ const model = ref([
                     },
                 ],
             },
-            {
-                label: 'Calendar',
-                icon: 'pi pi-fw pi-calendar',
-                to: '/apps/calendar',
-            },
-            {
-                label: 'Chat',
-                icon: 'pi pi-fw pi-comments',
-                to: '/apps/chat',
-            },
-            {
-                label: 'Files',
-                icon: 'pi pi-fw pi-folder',
-                to: '/apps/files',
-            },
-            {
-                label: 'Mail',
-                icon: 'pi pi-fw pi-envelope',
-                items: [
-                    {
-                        label: 'Inbox',
-                        icon: 'pi pi-fw pi-inbox',
-                        to: '/apps/mail/inbox',
-                    },
-                    {
-                        label: 'Compose',
-                        icon: 'pi pi-fw pi-pencil',
-                        to: '/apps/mail/compose',
-                    },
-                    {
-                        label: 'Detail',
-                        icon: 'pi pi-fw pi-comment',
-                        to: '/apps/mail/detail/1000',
-                    },
-                ],
-            },
-            {
-                label: 'Task List',
-                icon: 'pi pi-fw pi-check-square',
-                to: '/apps/tasklist',
-            },
+            
         ],
     },
     { separator: true },
@@ -97,31 +163,6 @@ const model = ref([
         label: 'UI Kit',
         icon: 'pi pi-fw pi-star-fill',
         items: [
-            {
-                label: 'Form Layout',
-                icon: 'pi pi-fw pi-id-card',
-                to: '/uikit/formlayout',
-            },
-            {
-                label: 'Input',
-                icon: 'pi pi-fw pi-check-square',
-                to: '/uikit/input',
-            },
-            {
-                label: 'Float Label',
-                icon: 'pi pi-fw pi-bookmark',
-                to: '/uikit/floatlabel',
-            },
-            {
-                label: 'Invalid State',
-                icon: 'pi pi-fw pi-exclamation-circle',
-                to: '/uikit/invalidstate',
-            },
-            {
-                label: 'Button',
-                icon: 'pi pi-fw pi-box',
-                to: '/uikit/button',
-            },
             {
                 label: 'Table',
                 icon: 'pi pi-fw pi-table',
@@ -138,16 +179,6 @@ const model = ref([
                 to: '/uikit/tree',
             },
             {
-                label: 'Panel',
-                icon: 'pi pi-fw pi-tablet',
-                to: '/uikit/panel',
-            },
-            {
-                label: 'Overlay',
-                icon: 'pi pi-fw pi-clone',
-                to: '/uikit/overlay',
-            },
-            {
                 label: 'Media',
                 icon: 'pi pi-fw pi-image',
                 to: '/uikit/media',
@@ -158,71 +189,9 @@ const model = ref([
                 to: '/uikit/menu',
             },
             {
-                label: 'Message',
-                icon: 'pi pi-fw pi-comment',
-                to: '/uikit/message',
-            },
-            {
                 label: 'File',
                 icon: 'pi pi-fw pi-file',
                 to: '/uikit/file',
-            },
-            {
-                label: 'Chart',
-                icon: 'pi pi-fw pi-chart-bar',
-                to: '/uikit/charts',
-            },
-            {
-                label: 'Misc',
-                icon: 'pi pi-fw pi-circle-off',
-                to: '/uikit/misc',
-            },
-        ],
-    },
-    { separator: true },
-    {
-        label: 'Prime Blocks',
-        icon: 'pi pi-fw pi-prime',
-        items: [
-            {
-                label: 'Free Blocks',
-                icon: 'pi pi-fw pi-eye',
-                to: '/blocks',
-            },
-            {
-                label: 'All Blocks',
-                icon: 'pi pi-fw pi-globe',
-                url: 'https://blocks.primevue.org/#/',
-                target: '_blank',
-            },
-        ],
-    },
-    { separator: true },
-    {
-        label: 'Utilities',
-        icon: 'pi pi-fw pi-compass',
-        items: [
-            {
-                label: 'PrimeIcons',
-                icon: 'pi pi-fw pi-prime',
-                to: '/utilities/icons',
-            },
-            {
-                label: 'Colors',
-                icon: 'pi pi-fw pi-palette',
-                to: '/utilities/colors',
-            },
-            {
-                label: 'PrimeFlex',
-                icon: 'pi pi-fw pi-desktop',
-                url: 'https://www.primefaces.org/primeflex/',
-                target: '_blank',
-            },
-            {
-                label: 'Figma',
-                icon: 'pi pi-fw pi-pencil',
-                url: 'https://www.figma.com/file/two0OGwOwHfq0sdjeK34l0/Preview-%7C-Atlantis-2022?type=design&node-id=15%3A1427&t=qiyvYNgWP234Ik5g-1',
-                target: '_blank',
             },
         ],
     },
@@ -230,12 +199,7 @@ const model = ref([
     {
         label: 'Pages',
         icon: 'pi pi-fw pi-briefcase',
-        items: [
-            {
-                label: 'Landing',
-                icon: 'pi pi-fw pi-globe',
-                to: '/landing',
-            },
+        items: [ 
             {
                 label: 'Auth',
                 icon: 'pi pi-fw pi-user',
@@ -283,21 +247,7 @@ const model = ref([
                 ],
             },
 
-            {
-                label: 'Crud',
-                icon: 'pi pi-fw pi-pencil',
-                to: '/pages/crud',
-            },
-            {
-                label: 'Timeline',
-                icon: 'pi pi-fw pi-calendar',
-                to: '/pages/timeline',
-            },
-            {
-                label: 'Invoice',
-                icon: 'pi pi-fw pi-dollar',
-                to: '/pages/invoice',
-            },
+            
             {
                 label: 'About Us',
                 icon: 'pi pi-fw pi-user',
@@ -308,16 +258,7 @@ const model = ref([
                 icon: 'pi pi-fw pi-question-circle',
                 to: '/pages/help',
             },
-            {
-                label: 'Not Found',
-                icon: 'pi pi-fw pi-exclamation-circle',
-                to: '/pages/notfound',
-            },
-            {
-                label: 'Empty',
-                icon: 'pi pi-fw pi-circle-off',
-                to: '/pages/empty',
-            },
+            
             {
                 label: 'FAQ',
                 icon: 'pi pi-fw pi-question',
@@ -327,48 +268,6 @@ const model = ref([
                 label: 'Contact Us',
                 icon: 'pi pi-fw pi-phone',
                 to: '/pages/contact',
-            },
-        ],
-    },
-    { separator: true },
-    {
-        label: 'E-Commerce',
-        icon: 'pi pi-fw pi-wallet',
-        items: [
-            {
-                label: 'Product Overview',
-                icon: 'pi pi-fw pi-image',
-                to: '/ecommerce/product-overview',
-            },
-            {
-                label: 'Product List',
-                icon: 'pi pi-fw pi-list',
-                to: '/ecommerce/product-list',
-            },
-            {
-                label: 'New Product',
-                icon: 'pi pi-fw pi-plus',
-                to: '/ecommerce/new-product',
-            },
-            {
-                label: 'Shopping Cart',
-                icon: 'pi pi-fw pi-shopping-cart',
-                to: '/ecommerce/shopping-cart',
-            },
-            {
-                label: 'Checkout Form',
-                icon: 'pi pi-fw pi-check-square',
-                to: '/ecommerce/checkout-form',
-            },
-            {
-                label: 'Order History',
-                icon: 'pi pi-fw pi-history',
-                to: '/ecommerce/order-history',
-            },
-            {
-                label: 'Order Summary',
-                icon: 'pi pi-fw pi-file',
-                to: '/ecommerce/order-summary',
             },
         ],
     },
@@ -466,11 +365,6 @@ const model = ref([
         icon: 'pi pi-fw pi-download',
         items: [
             {
-                label: 'Buy Now',
-                icon: 'pi pi-fw pi-shopping-cart',
-                url: 'https://www.primefaces.org/store',
-            },
-            {
                 label: 'Documentation',
                 icon: 'pi pi-fw pi-info-circle',
                 to: '/documentation',
@@ -478,6 +372,16 @@ const model = ref([
         ],
     },
 ]);
+
+const { item, root, index } = defineProps();
+
+const handleClick = () => {
+    if (item.click) {
+        item.click();
+    } else if (item.to) {
+        // Existing navigation logic
+    }
+};
 </script>
 
 <template>

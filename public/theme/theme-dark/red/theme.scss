@@ -1,13 +1,11 @@
-$primaryColor: #fc6161;
+$primaryColor: #B00020; // dark red
 $primaryLightColor: scale-color($primaryColor, $lightness: 60%) !default;
 $primaryDarkColor: scale-color($primaryColor, $lightness: -10%) !default;
 $primaryDarkerColor: scale-color($primaryColor, $lightness: -20%) !default;
 $primaryTextColor: #ffffff;
-$primary500: #fc6161 !default;
-
-$highlightBg: $primaryColor;
-$highlightTextColor: $primaryTextColor;
+$primary500: $primaryColor !default;
 
 @import '../_variables';
 @import '../../theme-base/_components';
 @import '../_extensions';
+

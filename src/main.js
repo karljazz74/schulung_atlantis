@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import { createI18n } from 'vue-i18n';
 import router from './router/index';
 import PrimeVue from 'primevue/config';
 import AutoComplete from 'primevue/autocomplete';
@@ -90,11 +91,27 @@ import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 
 import BlockViewer from '@/components/BlockViewer.vue';
+import en from '../locales/en.json';
+import de from '../locales/de.json';
+import es from '../locales/es.json';
+import fr from '../locales/fr.json';
 
 import '@/assets/styles.scss';
 
 const app = createApp(App);
 
+const i18n = createI18n({
+    legacy: false,
+    locale: 'en',
+    messages: {
+        en,
+        es,
+        de,
+        fr,
+    },
+});
+
+app.use(i18n);
 app.use(PrimeVue, { ripple: true });
 app.use(ConfirmationService);
 app.use(ToastService);

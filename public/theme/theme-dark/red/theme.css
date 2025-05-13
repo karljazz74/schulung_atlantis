@@ -2977,11 +2977,6 @@
 .p-column-filter-overlay-menu .p-column-filter-buttonbar {
   padding: 1.143rem;
 }
-
-.fc {
-  /* FullCalendar 4 */
-  /* FullCalendar 5 */
-}
 .fc.fc-unthemed .fc-view-container th {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -5552,7 +5547,7 @@
   color: #ffffff;
 }
 .p-galleria .p-galleria-item-nav {
-  background: transparent;
+  background: rgba(132, 131, 131, 0.5);
   color: #ffffff;
   width: 4rem;
   height: 4rem;

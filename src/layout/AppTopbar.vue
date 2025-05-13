@@ -1,10 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import Button from 'primevue/button';
+import { ref, computed } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
+import useThemeToggle from './composables/useThemeToggle.js';
 import AppSidebar from './AppSidebar.vue';
+// Accessing the global layout configuration
+const { colorScheme, toggleTheme } = useThemeToggle();
 const { onMenuToggle, showConfigSidebar, showSidebar } = useLayout();
 const searchInput = ref(null);
 const searchActive = ref(false);
+
+// Create a computed property to determine the icon class
+const themeIcon = computed(() => (colorScheme.value === 'dark' ? 'pi pi-sun' : 'pi pi-moon'));
 
 const onMenuButtonClick = () => {
     onMenuToggle();
@@ -49,6 +56,9 @@ const onSidebarButtonClick = () => {
                         </div>
                     </div>
                 </li>
+                &emsp;
+                <!-- added toggle button CPG for dark and light modes-->
+                <Button :icon="themeIcon" class="theme-toggle-button p-button-text p-button-rounded flex-shrink-0" type="button" @click="toggleTheme"></Button>
 
                 <li class="profile-item topbar-item">
                     <Button type="button" icon="pi pi-bell" class="p-button-text p-button-secondary text-color-secondary p-button-rounded flex-shrink-0"></Button>
@@ -62,6 +72,7 @@ const onSidebarButtonClick = () => {
                     <Button type="button" icon="pi pi-cog" class="p-button-text p-button-secondary text-color-secondary p-button-rounded flex-shrink-0" @click="onConfigButtonClick()"></Button>
                 </li>
 
+                <!-- end of added toggle button CPG for dark and light modes-->
                 <li ref="profile" class="profile-item topbar-item">
                     <a v-styleclass="{ selector: '@next', enterClass: 'hidden', enterActiveClass: 'px-scalein', leaveToClass: 'hidden', leaveActiveClass: 'px-fadeout', hideOnOutsideClick: true }" pRipple class="cursor-pointer">
                         <img class="border-circle" src="/layout/images/avatar/avatar-m-1.jpg" />

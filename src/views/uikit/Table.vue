@@ -1,111 +1,115 @@
 <script setup>
-import { ref, onBeforeMount, reactive } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { fetchData, fetchImageFromDirectus } from '@/service/dataService2';
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
-import { CustomerService } from '@/service/CustomerService';
-import { ProductService } from '@/service/ProductService';
 
-const customer1 = ref(null);
-const customer2 = ref(null);
-const customer3 = ref(null);
-const filters1 = ref(null);
-const loading1 = ref(null);
-const loading2 = ref(null);
-const idFrozen = ref(false);
-const products = ref(null);
-const expandedRows = ref([]);
-
-const statuses = ref([
-    { label: 'UNQUALIFIED', value: 'UNQUALIFIED' },
-    { label: 'QUALIFIED', value: 'QUALIFIED' },
-    { label: 'NEW', value: 'NEW' },
-    { label: 'NEGOTIATION', value: 'NEGOTIATION' },
-    { label: 'RENEWAL', value: 'RENEWAL' },
-    { label: 'PROPOSAL', value: 'PROPOSAL' },
-]);
-const representatives = reactive([
-    { name: 'Amy Elsner', image: 'amyelsner.png' },
-    { name: 'Anna Fali', image: 'annafali.png' },
-    { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-    { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-    { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-    { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-    { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-    { name: 'Onyama Limba', image: 'onyamalimba.png' },
-    { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-    { name: 'XuXue Feng', image: 'xuxuefeng.png' },
-]);
-
-const customerService = new CustomerService();
-const productService = new ProductService();
-
-onBeforeMount(() => {
-    productService.getProductsWithOrdersSmall().then((data) => (products.value = data));
-    customerService.getCustomersLarge().then((data) => {
-        customer1.value = data;
-        loading1.value = false;
-        customer1.value.forEach((customer) => (customer.date = new Date(customer.date)));
+const formatDate = (value) => {
+    if (!value) return null;
+    return value.toLocaleDateString('de-DE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
     });
-    customerService.getCustomersLarge().then((data) => (customer2.value = data));
-    customerService.getCustomersMedium().then((data) => (customer3.value = data));
-    loading2.value = false;
+};
 
+const recordsData = ref([]);
+const loading1 = ref(null);
+const filters1 = ref(null);
+
+const globalFilterValue = computed({
+    // Step 2: Insert this block below filters1 declaration
+    get: () => filters1.value?.global?.value ?? '',
+    set: (newValue) => {
+        if (!filters1.value.global) {
+            filters1.value.global = { value: null, matchMode: FilterMatchMode.CONTAINS };
+        }
+        filters1.value.global.value = newValue;
+    },
+});
+
+// Fetch data
+async function loadData() {
+    try {
+        const response = await fetchData();
+        console.log('Response Object:', response);
+
+        // Flatten the nested array
+        const flattenedResponse = response.flat(Infinity);
+
+        // Clear existing data
+        recordsData.value = [];
+
+        // Check and transform records if they exist
+        if (flattenedResponse?.length > 0) {
+            const transformedRecords = flattenedResponse.map((record) => {
+                console.log('Before transformation:', record);
+
+                // Define the transformed record
+                const transformed = {
+                    id_record: Number(record.id_record),
+                    find_location: record.find_location,
+                    date_documented_clean: record.date_documented_clean ? new Date(record.date_documented_clean) : null, // Changed this line
+                    obj_designation: record.obj_designation,
+                    // ... other transformations
+                    image_ids: Array.isArray(record.fk_files_images) ? record.fk_files_images.flatMap((image) => (image.directus_files_id ? [image.directus_files_id.id] : [])) : [],
+                };
+                console.log('Date documented:', record.date_documented_clean);
+                console.log('After transformation:', transformed); // Moved this line up, before the return
+                return transformed; // Return the transformed record
+            });
+            recordsData.value = transformedRecords; // Populate the ref
+            console.log('recordsData Value Y:', recordsData.value);
+            console.log('recordsData Value XYZ:', recordsData.value[10].find_location);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+// New Function: loadImages
+// This function will iterate through each record, fetch images from Directus and store them in the 'galleriaImages' property of the record.
+async function loadImages() {
+    const records = recordsData.value;
+    for (const record of records) {
+        const galleriaImages = [];
+        for (const id of record.image_ids) {
+            const imageUrl = await fetchImageFromDirectus(id);
+            const thumbnailUrl = await fetchImageFromDirectus(id, 'preset1');
+            if (imageUrl && thumbnailUrl) {
+                galleriaImages.push({
+                    itemImageSrc: imageUrl,
+                    thumbnailImageSrc: thumbnailUrl,
+                    alt: 'Description', // Modify as needed
+                });
+            }
+        }
+        record.galleriaImages = galleriaImages;
+    }
+}
+/// Modified: onMounted
+// Now also awaiting the 'loadImages' function to fetch and associate images with each record.
+onMounted(async () => {
+    console.log('onMounted triggered');
+    await loadData();
+    await loadImages(); // New Line
     initFilters1();
 });
 
 const initFilters1 = () => {
     filters1.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
-        balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-        status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-        activity: { value: [0, 50], matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+        id_record: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+        find_location: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+        date_documented_clean: {
+            operator: FilterOperator.AND,
+            constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
+        },
+        obj_designation: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
     };
 };
 
 const clearFilter1 = () => {
     initFilters1();
-};
-const expandAll = () => {
-    expandedRows.value = products.value.filter((p) => p.id);
-};
-const collapseAll = () => {
-    expandedRows.value = null;
-};
-const formatCurrency = (value) => {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-};
-
-const formatDate = (value) => {
-    return value.toLocaleDateString('en-US', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-    });
-};
-const calculateCustomerTotal = (name) => {
-    let total = 0;
-    if (customer3.value) {
-        for (let customer of customer3.value) {
-            if (customer.representative.name === name) {
-                total++;
-            }
-        }
-    }
-
-    return total;
-};
-const getBadgeSeverity = (status, type) => {
-    const statuses = {
-        productStatus: { UNQUALIFIED: 'danger', QUALIFIED: 'warning', NEW: 'success', NEGOTIATION: 'info', RENEWAL: 'primary', PROPOSAL: 'secondary' },
-        stock: { OUTOFSTOCK: 'danger', LOWSTOCK: 'warning', INSTOCK: 'success' },
-        orderStatus: { PENDING: 'warning', RETURN: 'help', CANCELLED: 'danger', DELIVERED: 'success' },
-    };
-
-    return statuses[type][status];
 };
 </script>
 
@@ -115,283 +119,116 @@ const getBadgeSeverity = (status, type) => {
             <div class="card">
                 <h5>Filter Menu</h5>
                 <DataTable
-                    :value="customer1"
+                    :value="recordsData"
                     :paginator="true"
                     class="p-datatable-gridlines"
-                    :rows="10"
-                    dataKey="id"
+                    :rows="15"
+                    dataKey="id_record"
                     :rowHover="true"
                     v-model:filters="filters1"
                     filterDisplay="menu"
                     :loading="loading1"
                     :filters="filters1"
                     responsiveLayout="scroll"
-                    :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']"
+                    :globalFilterFields="['find_location', 'date_documented_clean', 'obj_designation']"
                 >
                     <template #header>
                         <div class="flex justify-content-between flex-column sm:flex-row">
                             <Button type="button" icon="pi pi-filter-slash" label="Clear" class="p-button-outlined mb-2" @click="clearFilter1()" />
                             <span class="p-input-icon-left mb-2">
                                 <i class="pi pi-search" />
-                                <InputText v-model="filters1['global'].value" placeholder="Keyword Search" style="width: 100%" />
+                                <InputText v-model="globalFilterValue" placeholder="Keyword Search" style="width: 100%" />
                             </span>
                         </div>
                     </template>
-                    <template #empty> No customers found. </template>
+                    <template #empty> No records found. </template>
                     <template #loading> Loading customers data. Please wait. </template>
-                    <Column field="name" header="Name" style="min-width: 12rem">
+                    <Column field="id_record" header="ID" style="max-width: 1rem">
                         <template #body="{ data }">
-                            {{ data.name }}
+                            {{ data.id_record }}
                         </template>
                         <template #filter="{ filterModel }">
-                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by name" />
+                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by ID" />
                         </template>
                     </Column>
-                    <Column header="Country" filterField="country.name" style="min-width: 12rem">
+                    <!-- Image Column added here -->
+                    <Column header="Images" style="max-width: 8rem">
                         <template #body="{ data }">
-                            <img src="/demo/images/flag/flag_placeholder.png" :alt="data.country.name" :class="'flag flag-' + data.country.code" width="30" />
-                            <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{ data.country.name }}</span>
-                        </template>
-                        <template #filter="{ filterModel }">
-                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by country" />
-                        </template>
-                        <template #filterclear="{ filterCallback }">
-                            <Button type="button" icon="pi pi-times" @click="filterCallback()" class="p-button-secondary"></Button>
-                        </template>
-                        <template #filterapply="{ filterCallback }">
-                            <Button type="button" icon="pi pi-check" @click="filterCallback()" class="p-button-success"></Button>
-                        </template>
-                    </Column>
-                    <Column header="Agent" filterField="representative" :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
-                        <template #body="{ data }">
-                            <img :alt="data.representative.name" :src="'/demo/images/avatar/' + data.representative.image" width="32" style="vertical-align: middle" />
-                            <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{ data.representative.name }}</span>
-                        </template>
-                        <template #filter="{ filterModel }">
-                            <div class="mb-3 text-bold">Agent Picker</div>
-                            <MultiSelect v-model="filterModel.value" :options="representatives" optionLabel="name" placeholder="Any" class="p-column-filter">
-                                <template #option="slotProps">
-                                    <div class="p-multiselect-representative-option">
-                                        <img :alt="slotProps.option.name" :src="'/demo/images/avatar/' + slotProps.option.image" width="32" style="vertical-align: middle" />
-                                        <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{ slotProps.option.name }}</span>
+                            <Carousel :value="data.galleriaImages" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions">
+                                <template #item="slotProps">
+                                    <div class="border-1 surface-border border-round m-2 text-center py-1 px-1 carousel-container">
+                                        <div class="mb-3">
+                                            <img :src="slotProps.data.itemImageSrc" :alt="slotProps.data.alt" class="w-6 shadow-2" />
+                                        </div>
                                     </div>
                                 </template>
-                            </MultiSelect>
+                            </Carousel>
                         </template>
                     </Column>
-                    <Column header="Date" filterField="date" dataType="date" style="min-width: 10rem">
+                    <!-- Rest of the fields -->
+                    <Column field="find_location" header="Find Location(s)" style="max-width: 6rem">
                         <template #body="{ data }">
-                            {{ formatDate(data.date) }}
+                            {{ data.find_location }}
                         </template>
                         <template #filter="{ filterModel }">
-                            <Calendar v-model="filterModel.value" dateFormat="mm/dd/yy" placeholder="mm/dd/yyyy" />
+                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by Find Loc." />
                         </template>
                     </Column>
-                    <Column header="Balance" filterField="balance" dataType="numeric" style="min-width: 10rem">
+                    <Column header="Date" filterField="date_documented_clean" dataType="date" style="max-width: 4rem">
                         <template #body="{ data }">
-                            {{ formatCurrency(data.balance) }}
+                            {{ formatDate(data.date_documented_clean) }}
+                            <!-- Convert to string here -->
                         </template>
                         <template #filter="{ filterModel }">
-                            <InputNumber v-model="filterModel.value" mode="currency" currency="USD" locale="en-US" />
+                            <Calendar v-model="filterModel.value" dateFormat="dd.mm.yy" placeholder="dd.mm.yyyy" :showIcon="true" />
                         </template>
                     </Column>
-                    <Column field="status" header="Status" :filterMenuStyle="{ width: '14rem' }" style="min-width: 12rem">
-                        <template #body="slotProps">
-                            <Badge :severity="getBadgeSeverity(slotProps.data.status.toUpperCase(), 'productStatus')">{{ slotProps.data.status.toUpperCase() }}</Badge>
+                    <Column field="obj_designation" header="Designation" style="max-width: 4rem">
+                        <template #body="{ data }">
+                            {{ data.obj_designation }}
                         </template>
                         <template #filter="{ filterModel }">
-                            <Dropdown v-model="filterModel.value" :options="statuses" placeholder="Any" class="p-column-filter" :showClear="true">
-                                <template #value="slotProps">
-                                    <span :class="'customer-badge status-' + slotProps.value" v-if="slotProps.value">{{ slotProps.value }}</span>
-                                    <span v-else>{{ slotProps.placeholder }}</span>
-                                </template>
-                                <template #option="slotProps">
-                                    <span :class="'customer-badge status-' + slotProps.option">{{ slotProps.option }}</span>
-                                </template>
-                            </Dropdown>
+                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by Obj. Design." />
                         </template>
                     </Column>
-                    <Column field="activity" header="Activity" :showFilterMatchModes="false" style="min-width: 12rem">
-                        <template #body="{ data }">
-                            <ProgressBar :value="data.activity" :showValue="false" style="height: 0.5rem"></ProgressBar>
-                        </template>
-                        <template #filter="{ filterModel }">
-                            <Slider v-model="filterModel.value" :range="true" class="m-3"></Slider>
-                            <div class="flex align-items-center justify-content-between px-2">
-                                <span>{{ filterModel.value ? filterModel.value[0] : 0 }}</span>
-                                <span>{{ filterModel.value ? filterModel.value[1] : 100 }}</span>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column field="verified" header="Verified" dataType="boolean" bodyClass="text-center" style="min-width: 8rem">
-                        <template #body="{ data }">
-                            <i class="pi" :class="{ 'text-green-500 pi-check-circle': data.verified, 'text-pink-500 pi-times-circle': !data.verified }"></i>
-                        </template>
-                        <template #filter="{ filterModel }">
-                            <TriStateCheckbox v-model="filterModel.value" />
-                        </template>
-                    </Column>
-                </DataTable>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-                <h5>Frozen Columns</h5>
-                <ToggleButton v-model="idFrozen" onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style="width: 10rem" />
-
-                <DataTable :value="customer2" :scrollable="true" scrollHeight="400px" :loading="loading2" scrollDirection="both" class="mt-3">
-                    <Column field="name" header="Name" :style="{ width: '150px' }" frozen></Column>
-                    <Column field="id" header="Id" :style="{ width: '100px' }" :frozen="idFrozen"></Column>
-                    <Column field="country.name" header="Country" :style="{ width: '200px' }">
-                        <template #body="{ data }">
-                            <img src="/demo/images/flag/flag_placeholder.png" :class="'flag flag-' + data.country.code" width="30" />
-                            <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{ data.country.name }}</span>
-                        </template>
-                    </Column>
-                    <Column field="date" header="Date" :style="{ width: '200px' }"></Column>
-                    <Column field="company" header="Company" :style="{ width: '200px' }"></Column>
-                    <Column field="status" header="Status" :style="{ width: '200px' }">
-                        <template #body="slotProps">
-                            <Badge :severity="getBadgeSeverity(slotProps.data.status.toUpperCase(), 'productStatus')">{{ slotProps.data.status.toUpperCase() }}</Badge>
-                        </template>
-                    </Column>
-                    <Column field="activity" header="Activity" :style="{ width: '200px' }"></Column>
-                    <Column field="representative.name" header="Representative" :style="{ width: '200px' }">
-                        <template #body="{ data }">
-                            <img :alt="data.representative.name" :src="'/demo/images/avatar/' + data.representative.image" width="32" style="vertical-align: middle" />
-                            <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{ data.representative.name }}</span>
-                        </template>
-                    </Column>
-                    <Column field="balance" header="Balance" :style="{ width: '150px' }" frozen alignFrozen="right">
-                        <template #body="{ data }">
-                            <span class="text-bold">{{ formatCurrency(data.balance) }}</span>
-                        </template>
-                    </Column>
-                </DataTable>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-                <h5>Row Expand</h5>
-                <DataTable :value="products" v-model:expandedRows="expandedRows" dataKey="id" responsiveLayout="scroll">
-                    <template #header>
-                        <div>
-                            <Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="mr-2 mb-2" />
-                            <Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" class="mb-2" />
-                        </div>
-                    </template>
-                    <Column :expander="true" headerStyle="width: 3rem" />
-                    <Column field="name" header="Name" :sortable="true">
-                        <template #body="slotProps">
-                            {{ slotProps.data.name }}
-                        </template>
-                    </Column>
-                    <Column header="Image">
-                        <template #body="slotProps">
-                            <img :src="'/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" class="shadow-2" width="100" />
-                        </template>
-                    </Column>
-                    <Column field="price" header="Price" :sortable="true">
-                        <template #body="slotProps">
-                            {{ formatCurrency(slotProps.data.price) }}
-                        </template>
-                    </Column>
-                    <Column field="category" header="Category" :sortable="true">
-                        <template #body="slotProps">
-                            {{ formatCurrency(slotProps.data.category) }}
-                        </template></Column
-                    >
-                    <Column field="rating" header="Reviews" :sortable="true">
-                        <template #body="slotProps">
-                            <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
-                        </template>
-                    </Column>
-                    <Column field="inventoryStatus" header="Status" :sortable="true">
-                        <template #body="slotProps">
-                            <Badge :severity="getBadgeSeverity(slotProps.data.inventoryStatus, 'stock')">{{ slotProps.data.inventoryStatus }}</Badge>
-                        </template>
-                    </Column>
-                    <template #expansion="slotProps">
-                        <div class="p-3">
-                            <h5>Orders for {{ slotProps.data.name }}</h5>
-                            <DataTable :value="slotProps.data.orders" responsiveLayout="scroll">
-                                <Column field="id" header="Id" :sortable="true">
-                                    <template #body="slotProps">
-                                        {{ slotProps.data.id }}
-                                    </template>
-                                </Column>
-                                <Column field="customer" header="Customer" :sortable="true">
-                                    <template #body="slotProps">
-                                        {{ slotProps.data.customer }}
-                                    </template>
-                                </Column>
-                                <Column field="date" header="Date" :sortable="true">
-                                    <template #body="slotProps">
-                                        {{ slotProps.data.date }}
-                                    </template>
-                                </Column>
-                                <Column field="amount" header="Amount" :sortable="true">
-                                    <template #body="slotProps">
-                                        {{ formatCurrency(slotProps.data.amount) }}
-                                    </template>
-                                </Column>
-                                <Column field="status" header="Status" :sortable="true">
-                                    <template #body="slotProps">
-                                        <Badge :severity="getBadgeSeverity(slotProps.data.status.toUpperCase(), 'orderStatus')">{{ slotProps.data.status.toUpperCase() }}</Badge>
-                                    </template>
-                                </Column>
-                                <Column headerStyle="width:4rem">
-                                    <template #body>
-                                        <Button icon="pi pi-search" />
-                                    </template>
-                                </Column>
-                            </DataTable>
-                        </div>
-                    </template>
-                </DataTable>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-                <h5>Subheader Grouping</h5>
-                <DataTable :value="customer3" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px">
-                    <Column field="representative.name" header="Representative"></Column>
-                    <Column field="name" header="Name" style="min-width: 200px"></Column>
-                    <Column field="country" header="Country" style="min-width: 200px">
-                        <template #body="slotProps">
-                            <img src="/demo/images/flag/flag_placeholder.png" :class="'flag flag-' + slotProps.data.country.code" width="30" />
-                            <span class="image-text ml-2">{{ slotProps.data.country.name }}</span>
-                        </template>
-                    </Column>
-                    <Column field="company" header="Company" style="min-width: 200px"></Column>
-                    <Column field="status" header="Status" style="min-width: 200px">
-                        <template #body="slotProps">
-                            <Badge :severity="getBadgeSeverity(slotProps.data.status.toUpperCase(), 'productStatus')">{{ slotProps.data.status.toUpperCase() }}</Badge>
-                        </template>
-                    </Column>
-                    <Column field="date" header="Date" style="min-width: 200px"></Column>
-                    <template #groupheader="slotProps">
-                        <img :alt="slotProps.data.representative.name" :src="'/demo/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
-                        <span class="image-text font-bold ml-2">{{ slotProps.data.representative.name }}</span>
-                    </template>
-                    <template #groupfooter="slotProps">
-                        <td style="text-align: right" class="text-bold pr-6">Total Customers: {{ calculateCustomerTotal(slotProps.data.representative.name) }}</td>
-                    </template>
                 </DataTable>
             </div>
         </div>
     </div>
+    <!-- this Div comes from opening element all the way up (obergeordnete div)-->
 </template>
 
 <style scoped lang="scss">
-::v-deep(.p-datatable-frozen-tbody) {
+::deep(.p-datatable-frozen-tbody) {
     font-weight: bold;
 }
 
-::v-deep(.p-datatable-scrollable .p-frozen-column) {
+::deep(.p-datatable-scrollable .p-frozen-column) {
     font-weight: bold;
+}
+
+.mb-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: -2rem;
+}
+
+.carousel-items-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0.2rem;
+}
+.p-carousel .p-carousel-indicators {
+    padding: 0rem;
+    margin-top: -2rem; /* Adjust this value to position the indicators closer or farther */
+}
+.p-component .w-6 {
+    width: 100% !important;
+    max-height: 18vh;
+    object-fit: contain;
 }
 </style>
